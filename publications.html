@@ -1,1 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Votre Nom</title>
+    <style>
+        /* ============================================
+           STYLES GÉNÉRAUX
+           ============================================ */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        
+        nav {
+            background-color: #0a1929;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 3px solid #2c5282;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        .menu-gauche li:first-child {
+            margin-left: 0;
+        }
+
+        .menu-gauche a {
+            text-decoration: none;
+            color: #60a5fa;
+            font-weight: bold;
+            font-size: 22px;
+            transition: all 0.3s;
+        }
+
+        .menu-droite a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .menu-droite a:hover {
+            background-color: #1e3a5f;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           CONTENEUR PRINCIPAL
+           ============================================ */
+        
+        .container {
+            width: 100%;
+            padding: 60px 5%;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* ============================================
+           TITRE PRINCIPAL
+           ============================================ */
+        
+        .page-title {
+            text-align: center;
+            font-size: 52px;
+            color: #60a5fa;
+            margin-bottom: 60px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* ============================================
+           SECTION PAR ANNÉE
+           ============================================ */
+        
+        .year-section {
+            margin-bottom: 80px;
+        }
+
+        .year-title {
+            font-size: 36px;
+            color: #60a5fa;
+            font-weight: bold;
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 6px solid #3b82f6;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* ============================================
+           GRILLE DE PUBLICATIONS
+           ============================================ */
+        
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);    /* 2 colonnes */
+            gap: 35px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           CARTE DE PUBLICATION
+           ============================================ */
+        
+        .publication-card {
+            background: linear-gradient(135deg, rgba(10, 25, 41, 0.88), rgba(30, 58, 95, 0.88));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet de brillance au survol */
+        .publication-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .publication-card:hover::before {
+            left: 100%;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5),
+                        0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        /* ============================================
+           CONTENU DE LA CARTE
+           ============================================ */
+        
+        .publication-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .publication-description {
+            font-size: 15px;
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .publication-meta {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        .meta-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #60a5fa;
+            min-width: 80px;
+            margin-right: 10px;
+        }
+
+        .meta-value {
+            color: #d1d5db;
+            flex: 1;
+        }
+
+        .meta-value a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s;
+            word-break: break-all;
+        }
+
+        .meta-value a:hover {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           BADGE (pour statuts: Published, In Review, etc.)
+           ============================================ */
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .badge-published {
+            background-color: rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            border: 1px solid #22c55e;
+        }
+
+        .badge-review {
+            background-color: rgba(251, 191, 36, 0.3);
+            color: #fcd34d;
+            border: 1px solid #fbbf24;
+        }
+
+        .badge-preprint {
+            background-color: rgba(139, 92, 246, 0.3);
+            color: #c4b5fd;
+            border: 1px solid #8b5cf6;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        
+        @media (max-width: 1200px) {
+            .publications-grid {
+                grid-template-columns: 1fr;    /* 1 colonne sur tablette */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 4%;
+            }
+
+            .page-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .year-title {
+                font-size: 28px;
+            }
+
+            .publication-card {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .publication-title {
+                font-size: 18px;
+            }
+
+            nav {
+                padding: 15px 4%;
+            }
+
+            .year-section {
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul class="menu-gauche">
+            <li><a href="index.html">Votre Nom</a></li>
+        </ul>
+        
+        <ul class="menu-droite">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="publications.html">Publications</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteneur principal -->
+    <div class="container">
+        <!-- Titre principal -->
+        <h1 class="page-title">Publications</h1>
+
+        <!-- ============================================
+             SECTION 2025
+             ============================================ -->
+        <div class="year-section">
+            <h2 class="year-title">2025</h2>
+            
+            <div class="publications-grid">
+                <!-- Publication 1 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Deep Learning Approaches for Time Series Forecasting in Healthcare
+                    </h3>
+                    <p class="publication-description">
+                        Novel deep learning architectures for predicting patient outcomes using 
+                        temporal medical data with improved accuracy and interpretability.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, J. Smith, M. Dupont</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Journal:</span>
+                            <span class="meta-value">Journal of Machine Learning Research</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://arxiv.org/..." target="_blank">arxiv.org/abs/2025.xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Bayesian Methods for Uncertainty Quantification in Neural Networks
+                    </h3>
+                    <p class="publication-description">
+                        A comprehensive study on Bayesian inference techniques to quantify 
+                        uncertainty in modern neural network architectures.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, L. Martin</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Conférence:</span>
+                            <span class="meta-value">NeurIPS 2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://neurips.cc/..." target="_blank">neurips.cc/2025/xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-review">Under Review</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             SECTION 2024
+             ============================================ -->
+        <div class="year-section">
+            <h2 class="year-title">2024</h2>
+            
+            <div class="publications-grid">
+                <!-- Publication 3 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Statistical Methods for High-Dimensional Data Analysis
+                    </h3>
+                    <p class="publication-description">
+                        Novel statistical approaches for analyzing high-dimensional datasets 
+                        with applications in genomics and bioinformatics.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, A. Bernard, C. Petit</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Journal:</span>
+                            <span class="meta-value">Annals of Statistics</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://doi.org/..." target="_blank">doi.org/10.xxxx/xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Reinforcement Learning for Optimal Decision Making
+                    </h3>
+                    <p class="publication-description">
+                        Application of reinforcement learning algorithms to real-world 
+                        sequential decision-making problems in healthcare.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, R. Dubois</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Journal:</span>
+                            <span class="meta-value">IEEE Transactions on AI</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://ieeexplore.ieee.org/..." target="_blank">ieeexplore.ieee.org/xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+
+                <!-- Publication 5 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Causal Inference in Observational Studies
+                    </h3>
+                    <p class="publication-description">
+                        Methods for establishing causality from observational data using 
+                        modern statistical and machine learning techniques.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, T. Moreau, F. Garcia</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Preprint:</span>
+                            <span class="meta-value">arXiv</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://arxiv.org/..." target="_blank">arxiv.org/abs/2024.xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-preprint">Preprint</span>
+                </div>
+
+                <!-- Publication 6 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Data Visualization for Complex Systems
+                    </h3>
+                    <p class="publication-description">
+                        Interactive visualization techniques for understanding and 
+                        communicating insights from complex data systems.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, P. Laurent</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Conférence:</span>
+                            <span class="meta-value">IEEE VIS 2024</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://ieeevis.org/..." target="_blank">ieeevis.org/2024/xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             SECTION 2023
+             ============================================ -->
+        <div class="year-section">
+            <h2 class="year-title">2023</h2>
+            
+            <div class="publications-grid">
+                <!-- Publication 7 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Machine Learning for Predictive Analytics
+                    </h3>
+                    <p class="publication-description">
+                        Comprehensive survey of machine learning techniques for 
+                        predictive modeling in various application domains.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, K. Chen, S. Blanc</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Journal:</span>
+                            <span class="meta-value">Nature Machine Intelligence</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://nature.com/..." target="_blank">nature.com/articles/xxxxx</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+
+                <!-- Publication 8 -->
+                <div class="publication-card">
+                    <h3 class="publication-title">
+                        Statistical Computing with Python and R
+                    </h3>
+                    <p class="publication-description">
+                        A practical guide to implementing advanced statistical methods 
+                        using Python and R for data science applications.
+                    </p>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Type:</span>
+                            <span class="meta-value">Tutorial Paper</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lien:</span>
+                            <span class="meta-value">
+                                <a href="https://github.com/..." target="_blank">github.com/yourrepo/tutorial</a>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="badge badge-published">Published</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
