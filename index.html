@@ -5,145 +5,243 @@
   <meta name="viewport" content="width=device-with, initial-scale=1.0">
   <title> My page</title>
   <style>
-    nav { /*Permet de configurer le positionnement et le style des navigations entre pages*/
-      background-color: #0a1929;
-      display: flex; /*Active Flexbox*/
-      justify-content: space-between; /* Espace entre les deux listes */
-      align-items: center; /*Aligne verticalement au centre */
-      margin: -20px -20x 30px -20px; /* Espace des quatres côtés */
-      padding: 15px 0px; /* Espace À L'INTÉRIEUR de l'élément */
-      border-bottom: 2px solid #ddd; 
-      padding-left: 20px;
-      padding-right: 20px;
+  /* ============================================
+     STYLES GÉNÉRAUX
+     ============================================ */
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;                       /* Important : enlever les marges par défaut */
+    padding: 0;
+    background-image: url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* ============================================
+     NAVIGATION
+     ============================================ */
+  
+  nav {
+    background-color: #0a1929;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 3px solid #2c5282;  /* Bordure bleu marine au lieu de gris */
+    position: sticky;                   /* Navigation qui reste en haut au scroll */
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  nav li {
+    margin-left: 20px;                 /* Augmenté pour plus d'espace */
+  }
+
+  .menu-gauche li:first-child {
+    margin-left: 0;                    /* Pas de marge pour le premier élément */
+  }
+
+  .menu-gauche a {
+    text-decoration: none;
+    color: #60a5fa;                    /* Bleu clair pour se démarquer */
+    font-weight: bold;
+    font-size: 22px;
+    transition: all 0.3s;
+  }
+
+  .menu-droite a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;                   /* Augmenté de 10px à 16px */
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+
+  nav a:hover {
+    color: #3498db;
+  }
+
+  .menu-droite a:hover {
+    background-color: #1e3a5f;
+    transform: translateY(-2px);
+  }
+
+  /* ============================================
+     CONTENEUR PRINCIPAL
+     ============================================ */
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    min-height: 100vh;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ============================================
+     HEADER / EN-TÊTE
+     ============================================ */
+  
+  header {
+    position: relative;                /* Important pour l'overlay ::before */
+    background-image: 
+      linear-gradient(135deg, rgba(10, 25, 41, 0.85), rgba(30, 58, 95, 0.85)),
+      url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e-5.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 40px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  header h1 {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ============================================
+     PROFIL (Badges)
+     ============================================ */
+  
+  .profil {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .profil li {
+    background-color: rgba(30, 58, 95, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .profil li:hover {
+    background-color: #2c5282;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ============================================
+     WHERE (Position actuelle)
+     ============================================ */
+  
+  .where {
+    position: relative;
+    z-index: 2;
+    color: #60a5fa;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ============================================
+     CONTENU PRINCIPAL
+     ============================================ */
+  
+  main {
+    background-color: white;
+    padding: 40px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    color: #1e3a5f;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3b82f6;
+    padding-left: 15px;
+  }
+
+  p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+  }
+
+  ul {
+    line-height: 1.8;
+    color: #333;
+  }
+
+  /* ============================================
+     RESPONSIVE (Mobile)
+     ============================================ */
+  
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      padding: 15px;
     }
+    
     nav ul {
-      list-style: none; /*Enlève les puces */
-      margin: 0;
-      padding: 0;
-      display: flex  /* Les li côte à côte */
+      margin-top: 10px;
     }
+    
     nav li {
-      /*display: inline; /* Met les éléments sur la même ligne */
-      margin-left: 5px /* Espace entre les liens*/
+      margin-left: 10px;
     }
-
-    .menu-droite a {
-      text-decoration: none; /* Enlève le soulignement */
-      color: white;
-      font-weight: bold;
-      font-size: 10px;
-      transition: color 0.3s; /* Animation douce au survol */
-      border-radius: 0px;
-      padding: 8px 15px;
-    }
+    
     .menu-gauche a {
-      text-decoration: none; /* Enlève le soulignement */
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      transition: color 0.3s; /* Animation douce au survol */
-      border-radius: 0px;
-    }
-    nav a:hover {
-      color: #3498db; /*couleur au survol de la souris */
+      font-size: 18px;
     }
     
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 50px, auto;
-      padding: 20px;
-      background-color: #f5f5f5;
-      background-image: url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;    /* L'image reste fixe au scroll */
-      min-height: 100vh;               /* Hauteur minimale = hauteur de l'écran */
+    .menu-droite a {
+      font-size: 14px;
+      padding: 6px 10px;
     }
-    /* Conteneur avec fond blanc semi-transparent */
-    .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.95);  /* Blanc presque opaque */
-        min-height: 100vh;
-    }
+    
     header {
-      background: linear-gradient(135deg, rgba(10, 25, 41, 0.85), rgba(30, 58, 95, 0.85));
-      padding: 80px 20px;
-      text-align: center;
-      background-image: url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e-5.png');
-      background-size: cover;          /* L'image couvre tout l'espace */
-      background-position: center;     /* Centrage de l'image */
-      background-repeat: no-repeat;    /* Pas de répétition */
-      background-color: #333;
-      color: white;
-      max-width: 900px; 
-      margin: 0 auto;                /* Centre horizontalement */
-      margin-bottom: 30px;
-      border-radius: 10px;
-    }
-
-    /* Overlay sombre pour rendre le texte lisible */
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(10, 25, 41, 0.7);  /* Noir bleuté semi-transparent */
-      border-radius: 10px;
-      z-index: 1;
+      padding: 60px 20px;
     }
     
-    /* Le contenu doit être au-dessus de l'overlay */
-    header h1,
-    header .profil,
-    header .where {
-      position: relative;
-      z-index: 2;
-    }
-
-    .profil {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;              /* Permet de passer à la ligne si nécessaire */
-      gap: 10px;                    /* Espace entre les badges */
+    header h1 {
+      font-size: 32px;
     }
     
-    .profil li {
-        background-color: #1e3a5f;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;          /* Coins très arrondis */
-        font-size: 16px;
-        font-weight: 500;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    
-    .profil li:hover {
-        background-color: #2c5282;
-        transform: translateY(-2px);  /* Léger effet de survol */
-        transition: all 0.3s;
-    }
-
     main {
-      background-color: white;
-      padding: 30px;
-      margin-top: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
     }
-    h2 {
-      color: #333;
-    }
-  </style>
+  }
+</style>
 </head>
 <nav>
   <ul class="menu-gauche">
