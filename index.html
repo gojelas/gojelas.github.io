@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-with, initial-scale=1.0">
   <title> My page</title>
   <style>
+    nav { /*Permet de configurer le positionnement et le style des navigations entre pages*/
+      text-align: right;
+      margin-bottom: 30px;
+      padding: 15px 0;
+      border-bottom: 2px solid #ddd;
+    }
+    nav ul {
+      list-style: none; /*Enlève les puces */
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      display: inline; /* Met les éléments sur la même ligne */
+      margin-left: 25px /* Espace entre les liens*/
+    }
     body {
       font-family: Arial, sans-serif;
       max-width: 800px;
@@ -31,7 +46,14 @@
     }
   </style>
 </head>
-
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="presentation.html">Presentation</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="publications.html">Publications</a></li>
+  </ul>
+</nav>
 <body>
   <header>
     <h1>Data Scientist / Statisticien </h1>
