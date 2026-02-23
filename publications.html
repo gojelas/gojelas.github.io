@@ -314,6 +314,174 @@
                 margin-bottom: 50px;
             }
         }
+                .conference-section {
+            margin-bottom: 80px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .section-icon {
+            font-size: 40px;
+            margin-right: 20px;
+        }
+        
+        .section-title {
+            font-size: 38px;
+            color: #a78bfa;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section-subtitle {
+            font-size: 16px;
+            color: #d1d5db;
+            margin: 5px 0 0 0;
+            font-style: italic;
+        }
+        
+        /* ============================================
+           CARTE DE CONFÉRENCE (différente des publications)
+           ============================================ */
+        
+        .conference-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.2));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conference-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .conference-card:hover::before {
+            left: 100%;
+        }
+        
+        .conference-card:hover {
+            transform: translateY(-8px);
+            border-color: #a78bfa;
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.5),
+                        0 0 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .conference-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #c4b5fd;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .conference-name {
+            font-size: 18px;
+            color: #a78bfa;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .conference-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #e9d5ff;
+            border: 1px solid rgba(139, 92, 246, 0.5);
+        }
+        
+        .detail-badge::before {
+            margin-right: 6px;
+            font-size: 14px;
+        }
+        
+        .badge-location::before {
+            content: "📍";
+        }
+        
+        .badge-date::before {
+            content: "📅";
+        }
+        
+        .badge-type::before {
+            content: "🎯";
+        }
+        
+        /* Badge pour participation */
+        .participation-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(14, 165, 233, 0.2));
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .participation-card::before {
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+        }
+        
+        .participation-card:hover {
+            border-color: #60a5fa;
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5),
+                        0 0 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .participation-card .conference-title {
+            color: #93c5fd;
+        }
+        
+        .participation-card .conference-name {
+            color: #60a5fa;
+        }
+        
+        .participation-card .detail-badge {
+            background-color: rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Badge spécial pour rôle */
+        .badge-role {
+            background-color: rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.5);
+            color: #fde68a;
+        }
+        
+        .badge-role::before {
+            content: "👤";
+        }
     </style>
 </head>
 <body>
@@ -428,12 +596,276 @@
                     <span class="badge badge-preprint">Preprint</span>
                 </div>
             </div>
+            <!-- ============================================
+             PRÉSENTATIONS EN CONFÉRENCE
+             ============================================ -->
+        <div class="conference-section">
+            <div class="section-header">
+                <span class="section-icon">🎤</span>
+                <div>
+                    <h2 class="section-title">Présentations en Conférence</h2>
+                    <p class="section-subtitle">Communications orales et posters présentés</p>
+                </div>
+            </div>
+            
+            <div class="publications-grid">
+                <!-- Présentation 1 -->
+                <div class="conference-card">
+                    <h3 class="conference-title">
+                        Advanced Machine Learning Techniques for Healthcare Data
+                    </h3>
+                    <p class="conference-name">
+                        International Conference on Machine Learning (ICML)
+                    </p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Honolulu, Hawaii</span>
+                        <span class="detail-badge badge-date">Juillet 2024</span>
+                        <span class="detail-badge badge-type">Oral Presentation</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, J. Collaborateur</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Slides:</span>
+                            <span class="meta-value">
+                                <a href="#" target="_blank">Télécharger les slides (PDF)</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Présentation 2 -->
+                <div class="conference-card">
+                    <h3 class="conference-title">
+                        Statistical Methods for High-Dimensional Data Analysis
+                    </h3>
+                    <p class="conference-name">
+                        Joint Statistical Meetings (JSM)
+                    </p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Portland, Oregon</span>
+                        <span class="detail-badge badge-date">Août 2024</span>
+                        <span class="detail-badge badge-type">Poster</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, A. Dupont, B. Martin</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Poster:</span>
+                            <span class="meta-value">
+                                <a href="#" target="_blank">Voir le poster (PDF)</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Présentation 3 -->
+                <div class="conference-card">
+                    <h3 class="conference-title">
+                        Bayesian Inference in Neural Network Architectures
+                    </h3>
+                    <p class="conference-name">
+                        Conference on Neural Information Processing Systems (NeurIPS)
+                    </p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Vancouver, Canada</span>
+                        <span class="detail-badge badge-date">Décembre 2023</span>
+                        <span class="detail-badge badge-type">Spotlight Talk</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, C. Researcher</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Vidéo:</span>
+                            <span class="meta-value">
+                                <a href="#" target="_blank">Regarder la présentation</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Présentation 4 -->
+                <div class="conference-card">
+                    <h3 class="conference-title">
+                        Deep Learning for Time Series Forecasting
+                    </h3>
+                    <p class="conference-name">
+                        European Conference on Artificial Intelligence (ECAI)
+                    </p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Cracovie, Pologne</span>
+                        <span class="detail-badge badge-date">Octobre 2024</span>
+                        <span class="detail-badge badge-type">Oral Presentation</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Auteurs:</span>
+                            <span class="meta-value">Votre Nom, D. Expert</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Matériel:</span>
+                            <span class="meta-value">
+                                <a href="#" target="_blank">Slides et code</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ============================================
-             SECTION 2024
-             ============================================ --
-        
-    </div>
-</body>
-</html>
+             PARTICIPATIONS AUX CONFÉRENCES
+             ============================================ -->
+        <div class="conference-section">
+            <div class="section-header">
+                <span class="section-icon">🌍</span>
+                <div>
+                    <h2 class="section-title">Participations aux Conférences</h2>
+                    <p class="section-subtitle">Conférences assistées et contributions</p>
+                </div>
+            </div>
+            
+            <div class="publications-grid">
+                <!-- Participation 1 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        International Conference on Learning Representations
+                    </h3>
+                    <p class="conference-name">ICLR 2025</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Singapour</span>
+                        <span class="detail-badge badge-date">Mai 2025</span>
+                        <span class="detail-badge badge-role">Reviewer</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Rôle:</span>
+                            <span class="meta-value">Reviewer pour le track Machine Learning</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Activités:</span>
+                            <span class="meta-value">Révision de 5 articles, participation aux discussions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation 2 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        American Statistical Association Conference
+                    </h3>
+                    <p class="conference-name">ASA 2024</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Chicago, USA</span>
+                        <span class="detail-badge badge-date">Août 2024</span>
+                        <span class="detail-badge badge-role">Attendee</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Sessions:</span>
+                            <span class="meta-value">Bayesian Methods, High-Dimensional Statistics</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Networking:</span>
+                            <span class="meta-value">Rencontres avec experts du domaine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation 3 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        Workshop on Machine Learning in Healthcare
+                    </h3>
+                    <p class="conference-name">ML4H @ NeurIPS 2024</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">New Orleans, USA</span>
+                        <span class="detail-badge badge-date">Décembre 2024</span>
+                        <span class="detail-badge badge-role">Session Chair</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Rôle:</span>
+                            <span class="meta-value">Président de session - Deep Learning in Medicine</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Contribution:</span>
+                            <span class="meta-value">Modération de 6 présentations et Q&A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation 4 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        European Conference on Machine Learning
+                    </h3>
+                    <p class="conference-name">ECML-PKDD 2023</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Turin, Italie</span>
+                        <span class="detail-badge badge-date">Septembre 2023</span>
+                        <span class="detail-badge badge-role">Student Volunteer</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Activités:</span>
+                            <span class="meta-value">Assistance logistique, accueil des participants</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Bénéfice:</span>
+                            <span class="meta-value">Accès gratuit à toutes les sessions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation 5 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        International Conference on Computational Statistics
+                    </h3>
+                    <p class="conference-name">COMPSTAT 2024</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">Giessen, Allemagne</span>
+                        <span class="detail-badge badge-date">Août 2024</span>
+                        <span class="detail-badge badge-role">Attendee</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Focus:</span>
+                            <span class="meta-value">Computational methods for big data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation 6 -->
+                <div class="conference-card participation-card">
+                    <h3 class="conference-title">
+                        PyData Conference
+                    </h3>
+                    <p class="conference-name">PyData Global 2024</p>
+                    <div class="conference-details">
+                        <span class="detail-badge badge-location">En ligne</span>
+                        <span class="detail-badge badge-date">Novembre 2024</span>
+                        <span class="detail-badge badge-role">Tutorial Instructor</span>
+                    </div>
+                    <div class="publication-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Tutorial:</span>
+                            <span class="meta-value">Introduction to Bayesian Statistics with PyMC</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Matériel:</span>
+                            <span class="meta-value">
+                                <a href="#" target="_blank">Notebooks et vidéo</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
