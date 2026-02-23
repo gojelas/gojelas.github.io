@@ -1,19 +1,334 @@
-<DOCTYPE ! HTML>
-  <main>
-    <h2>A propos de moi</h2>
-    <p>
-Passionné par les dynamiques qui se cachent dans le temps, je développe des modèles capables de capter la mémoire des données. Des transformers aux approches bayésiennes, en passant par la modélisation de la mortalité uni et multi-population, j’aime faire dialoguer rigueur statistique et créativité méthodologique. Mon objectif est simple : rendre lisible ce qui, au premier regard, semble chaotique.</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Votre Nom</title>
+    <style>
+        /* Copiez ici les styles de votre page principale (nav, body, etc.) */
+        
+        /* ============================================
+           STYLES GÉNÉRAUX
+           ============================================ */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('gpt-image-1.5-high-fidelity_a_Tu_es_un_doctorant_e.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
 
-    <h2>Mes centres d'intérêt</h2>
-    <ul>
-      <li>Uni and Multi-population Mortality Modeling with classical (Lee-Carter and its extensions) and Machine Learning Methods (ML/DL):</li>
-      <li>Fuzzy-C-Means Algorithms for Spatio-Temporal Clustering</li>
-      <li>Deep Learning for Times Series Forecasting: Neural Networks, Recurrent Neural Networks (RNN), </li>
-      <li>Classical Methods for Times Series Modeling: </li>
-      <li>Geo-Statistics for Spatio-Temporal data modeling: </li>
-      <li>Bayesian Methods for Modeling</li>
-    </ul>
+        /* ============================================
+           NAVIGATION (Copiez votre nav complète ici)
+           ============================================ */
+        
+        nav {
+            background-color: #0a1929;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 3px solid #2c5282;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
 
-    <h2>Contact</h2>
-    <p> N'hésitez pas à me contacter !</p>
-  </main>
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        .menu-gauche li:first-child {
+            margin-left: 0;
+        }
+
+        .menu-gauche a {
+            text-decoration: none;
+            color: #60a5fa;
+            font-weight: bold;
+            font-size: 22px;
+            transition: all 0.3s;
+        }
+
+        .menu-droite a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .menu-droite a:hover {
+            background-color: #1e3a5f;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           CONTENEUR PRINCIPAL
+           ============================================ */
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ============================================
+           TITRE PRINCIPAL "ABOUT ME"
+           ============================================ */
+        
+        .page-title {
+            text-align: center;
+            font-size: 48px;
+            color: #0a1929;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================
+           GRILLE DE CARTES
+           ============================================ */
+        
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;                    /* Espace entre les cartes */
+            max-width: 700px;
+            margin: 0 auto;               /* Centre les cartes */
+        }
+
+        /* ============================================
+           STYLE DES CARTES
+           ============================================ */
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(10, 25, 41, 0.15);  /* Ombre douce */
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 25px rgba(10, 25, 41, 0.25);  /* Ombre plus prononcée au survol */
+            transform: translateY(-5px);                     /* Légère élévation */
+            border-color: #3b82f6;                           /* Bordure bleue au survol */
+        }
+
+        .card-title {
+            font-size: 24px;
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-left: 4px solid #3b82f6;
+            padding-left: 15px;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           STYLES SPÉCIFIQUES PAR CARTE
+           ============================================ */
+        
+        /* Liste des centres d'intérêt */
+        .interests-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .interests-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .interests-list li:last-child {
+            border-bottom: none;
+        }
+
+        .interests-list li:before {
+            content: "▸ ";                /* Petite flèche */
+            color: #3b82f6;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Contacts */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            color: #1e3a5f;
+            min-width: 100px;
+            margin-right: 15px;
+        }
+
+        .contact-value {
+            color: #333;
+        }
+
+        .contact-value a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: #2c5282;
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 36px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card-title {
+                font-size: 20px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (copiez votre nav complète) -->
+    <nav>
+        <ul class="menu-gauche">
+            <li><a href="index.html">Votre Nom</a></li>
+        </ul>
+        
+        <ul class="menu-droite">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="publications.html">Publications</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteneur principal -->
+    <div class="container">
+        <!-- Titre principal -->
+        <h1 class="page-title">About Me</h1>
+
+        <!-- Grille de cartes -->
+        <div class="cards-container">
+            
+            <!-- Carte 1 : Description -->
+            <div class="card">
+                <h2 class="card-title">Qui suis-je ?</h2>
+                <div class="card-content">
+                    <p>
+                        Je suis [Votre Nom], doctorant en [Votre domaine] passionné par 
+                        l'analyse de données et la modélisation statistique. Mon travail se 
+                        concentre sur [votre sujet de recherche].
+                    </p>
+                    <p>
+                        Avec une solide formation en mathématiques et en informatique, je 
+                        combine ces compétences pour résoudre des problèmes complexes dans 
+                        le domaine de [votre domaine].
+                    </p>
+                </div>
+            </div>
+
+            <!-- Carte 2 : Centres d'intérêt -->
+            <div class="card">
+                <h2 class="card-title">Mes centres d'intérêt</h2>
+                <ul class="interests-list">
+                    <li>Machine Learning & Intelligence Artificielle</li>
+                    <li>Statistiques Bayésiennes</li>
+                    <li>Visualisation de données</li>
+                    <li>Programmation Python & R</li>
+                    <li>Big Data & Data Science</li>
+                    <li>Recherche académique</li>
+                </ul>
+            </div>
+
+            <!-- Carte 3 : Contacts -->
+            <div class="card">
+                <h2 class="card-title">Contact</h2>
+                <div class="card-content">
+                    <div class="contact-item">
+                        <span class="contact-label">Email :</span>
+                        <span class="contact-value">
+                            <a href="mailto:votre.email@universite.fr">votre.email@universite.fr</a>
+                        </span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn :</span>
+                        <span class="contact-value">
+                            <a href="https://linkedin.com/in/votreprofil" target="_blank">linkedin.com/in/votreprofil</a>
+                        </span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">GitHub :</span>
+                        <span class="contact-value">
+                            <a href="https://github.com/votreprofil" target="_blank">github.com/votreprofil</a>
+                        </span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Téléphone :</span>
+                        <span class="contact-value">+33 X XX XX XX XX</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
