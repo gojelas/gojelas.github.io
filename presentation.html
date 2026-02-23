@@ -8,7 +8,6 @@
     /* ============================================
        STYLES GÉNÉRAUX
        ============================================ */
-    
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -19,7 +18,9 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         min-height: 100vh;
+        overflow-x: hidden;              /* IMPORTANT : Empêche scroll horizontal */
     }
+
 
     /* ============================================
        NAVIGATION
@@ -88,6 +89,7 @@
         width: 100%;                      /* Pleine largeur */
         padding: 60px 80px;               /* Padding aux bords */
         min-height: 100vh;
+        box-sizing: border-box;          /* IMPORTANT : Inclut padding dans la largeur */
     }
 
     /* ============================================
@@ -115,6 +117,7 @@
         gap: 40px;
         max-width: 1200px;               /* Largeur max pour ne pas être trop étiré */
         margin: 0 auto;
+        width: 100%;
     }
 
     /* ============================================
@@ -122,14 +125,17 @@
        ============================================ */
     
     .card {
-        background-color: rgba(10, 25, 41, 0.85);    /* Bleu foncé semi-transparent */
-        backdrop-filter: blur(10px);                  /* Effet de flou du fond */
+        background-color: rgba(10, 25, 41, 0.85);
+        backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: 40px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        border: 2px solid rgba(59, 130, 246, 0.3);    /* Bordure bleu clair subtile */
+        border: 2px solid rgba(59, 130, 246, 0.3);
         transition: all 0.3s ease;
-        color: white;                                 /* Texte blanc */
+        color: white;
+        min-height: 250px;               /* AJOUTÉ : Hauteur minimale */
+        display: flex;                   /* AJOUTÉ : Pour contrôle du contenu */
+        flex-direction: column;          /* AJOUTÉ : Contenu en colonne */
     }
 
     .card:hover {
@@ -151,8 +157,9 @@
 
     .card-content {
         font-size: 17px;
-        color: #e0e0e0;                               /* Gris clair */
+        color: #e0e0e0;
         line-height: 1.8;
+        flex-grow: 1;                    /* AJOUTÉ : Prend l'espace restant */
     }
 
     .card-content p {
