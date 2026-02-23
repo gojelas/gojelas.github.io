@@ -69,6 +69,22 @@
       margin: 20px 0;
       padding: 0;
     }
+
+    .profil li {
+    display: inline;               /* Sur la même ligne */
+    color: #60a5fa;                /* Couleur bleu clair */
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 15px;                /* Espace entre les éléments */
+    }
+
+    /* Ajouter des séparateurs entre les éléments */
+    .profil li:not(:last-child)::after {
+        content: " • ";                /* Point de séparation */
+        margin-left: 15px;
+        color: #3b82f6;
+    }
+
     main {
       background-color: white;
       padding: 30px;
