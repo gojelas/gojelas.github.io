@@ -64,25 +64,30 @@
     }
 
     .profil {
-      display: flex;
-      text-align: left;
-      margin: 20px 0;
+      list-style: none;
       padding: 0;
+      margin: 20px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;              /* Permet de passer à la ligne si nécessaire */
+      gap: 10px;                    /* Espace entre les badges */
     }
-
+    
     .profil li {
-    display: inline;               /* Sur la même ligne */
-    color: #60a5fa;                /* Couleur bleu clair */
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0 15px;                /* Espace entre les éléments */
+        background-color: #1e3a5f;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;          /* Coins très arrondis */
+        font-size: 16px;
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
-    /* Ajouter des séparateurs entre les éléments */
-    .profil li:not(:last-child)::after {
-        content: " • ";                /* Point de séparation */
-        margin-left: 15px;
-        color: #3b82f6;
+    
+    .profil li:hover {
+        background-color: #2c5282;
+        transform: translateY(-2px);  /* Léger effet de survol */
+        transition: all 0.3s;
     }
 
     main {
