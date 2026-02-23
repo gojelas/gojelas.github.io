@@ -38,7 +38,7 @@
     }
     .menu-gauche a {
       text-decoration: none; /* Enlève le soulignement */
-      color: #3498db;
+      color: white;
       font-weight: bold;
       font-size: 20px;
       transition: color 0.3s; /* Animation douce au survol */
@@ -60,7 +60,13 @@
       color: white;
       padding: 20px;
       text-align: center;
-      border-radius: 5px;
+      border-radius: 20px;
+    }
+
+    header ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
     }
     main {
       background-color: white;
@@ -76,7 +82,7 @@
 </head>
 <nav>
   <ul class="menu-gauche">
-    <li> Jean-Luc GOUTHON </li>
+    <li> Jean-Luc </li>
   </ul>
   <ul class="menu-droite">
     <li><a href="index.html">Home</a></li>
@@ -89,8 +95,17 @@
 </nav>
 <body>
   <header>
-    <h1>Data Scientist / Statisticien </h1>
-    <p> PhD Student at Aix-Marseille University (AMU) -- Institut de Mathématiques de Marseille (I2M) </p>
+    <h1>Abiodun Jean-Luc GOUTHON</h1>
+    <p class="profil"> 
+      <ul>
+        <li>Data Scientist</li>
+        <li>Research Scientist</li>
+        <li>Statistician</li>
+      </ul>
+    </p>
+    <p class="where"> 
+      PhD Student at Aix-Marseille University (AMU) -- Institut de Mathématiques de Marseille (I2M) 
+    </p>
   </header>
 </body>
 </html>
